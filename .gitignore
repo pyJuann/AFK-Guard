@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+.stryker-tmp/
+reports/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+.venv/
+ml/artifacts/
+traces/*.private.json
