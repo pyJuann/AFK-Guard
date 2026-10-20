@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    # Voice libraries are pinned on purpose (CLAUDE.md). Upgrades need a manual Phase 0-style check.
+    ignore:
+      - dependency-name: "@discordjs/voice"
+      - dependency-name: "@snazzah/davey"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

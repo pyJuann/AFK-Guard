@@ -2,7 +2,7 @@
 
 A Discord bot that watches the **busiest voice channel** in a server and disconnects members who have produced **no audio for 5 minutes**, posting a notice in the channel so everyone knows a spot just opened up.
 
-> **Status:** Planning complete, implementation not started. Nothing in this README is measured yet. The measurement plan lives in [docs/METRICS.md](docs/METRICS.md), and every number published here will link to the command that produced it.
+> **Status:** Project skeleton in place (tooling, config loader, CI). Phase 0 (platform verification) is next. Nothing in this README is measured yet. The measurement plan lives in [docs/METRICS.md](docs/METRICS.md), and every number published here will link to the command that produced it.
 
 ## Why this exists
 
@@ -91,6 +91,22 @@ Step-by-step setup instructions will be added in Phase 2.
 ## Privacy
 
 Processes Discord user IDs, voice-state flags, and timestamps of when someone produced audio. Never audio content. See [PRIVACY.md](PRIVACY.md).
+
+## Development
+
+Requires Node.js 22.12 or newer (see `.nvmrc`).
+
+```sh
+npm ci                 # install exact pinned versions
+npm run lint           # ESLint, including the core-purity rule for /src/core
+npm run typecheck      # tsc in strict mode
+npm test               # Vitest unit and property-based tests
+npm run voice:report   # which voice encryption/DAVE/Opus libraries @discordjs/voice can find
+```
+
+Copy `.env.example` to `.env` for local runs. Never commit `.env`.
+
+Layout: `src/core` (pure decision logic, no I/O or ambient time), `src/app` (orchestration and config), `src/adapters` (Discord, Redis, metrics), `src/sim` (simulator), `test`, `scripts`.
 
 ## Project docs
 
